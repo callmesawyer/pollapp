@@ -1,0 +1,13 @@
+{% if latest_question_list %}
+<ul>
+    {% for question in latest_question_list %}
+        <li>
+            <a href="/polls/{{ question.id }}">{{ question.question_text }}</a>
+            <!-- question.id ma 'question' object ko ra harek
+            object ko 'id' compulsary rup ma hunxa default ma -->
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
