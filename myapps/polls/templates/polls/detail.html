@@ -1,0 +1,20 @@
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+    <!-- id="choice{{ forloop.counter }}" ma choice normal text ho, forloop.counter le first ma 1 dinxa
+    and second ma 2 and so on. so loop ma id=choice1, id=choice2 hudai janxa
+    value="{{ choice.id }}" le choice ko id matra dinxa input box ma. so, form submit huda yo value server
+    side ma janxa
+    radio button ma input tag ko 'id' ra label tag ko 'for' le relationship dinxa.
+    i.e. id=choice1 ra for=choice1 le relationship dinxa -->
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+    <input type="submit" value="Vote">
+</form>

@@ -9,6 +9,7 @@ class Question(models.Model):
 	pub_date = models.DateTimeField('date published')
 
 	def was_published_recently(self):
+		# 1 din or tyo vanda kam lai True return garxa, natra False return garxa
 		return self.pub_date >= timezone.localtime() - datetime.timedelta(days=1)
 
 	def __str__(self):
